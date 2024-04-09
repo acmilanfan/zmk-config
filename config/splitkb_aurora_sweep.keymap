@@ -1,3 +1,84 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <behaviors/mouse_keys.dtsi>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+&mt {
+    //  flavor = "tap-preferred";
+    // tapping-term-ms = <200>;
+
+    flavor = "tap-preferred";
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <10 19>;
+            bindings = <&kp ESC>;
+        };
+
+        esc_left {
+            bindings = <&kp ESC>;
+            key-positions = <1 2>;
+            timeout-ms = <15>;
+        };
+
+        esc_right {
+            bindings = <&kp ESC>;
+            key-positions = <6 7>;
+            timeout-ms = <15>;
+        };
+
+        colon {
+            bindings = <&kp COLON>;
+            key-positions = <7 8>;
+            timeout-ms = <15>;
+        };
+
+        copy {
+            bindings = <&kp K_COPY>;
+            key-positions = <21 22>;
+            timeout-ms = <15>;
+        };
+
+        paste {
+            bindings = <&kp K_PASTE>;
+            key-positions = <22 23>;
+            timeout-ms = <15>;
+        };
+
+        cut {
+            bindings = <&kp K_CUT>;
+            key-positions = <20 21>;
+            timeout-ms = <15>;
+        };
+
+        lang_switch {
+            bindings = <&kp RS(RCTRL)>;
+            key-positions = <5 6>;
+            timeout-ms = <15>;
+        };
+
+        caps {
+            bindings = <&kp CAPSLOCK>;
+            key-positions = <12 17>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
             bindings = <
 &kp Q        &kp W           &kp E         &kp R        &kp T      &kp Y    &kp U             &kp I         &kp O                   &mt MINUS P
 &mt LGUI A   &mt LEFT_ALT S  &mt LSHIFT D  &mt LCTRL F  &lt 6 G    &lt 6 H  &mt LCTRL J       &mt RSHIFT K  &mt LEFT_ALT L          &mt RGUI SEMICOLON
@@ -5,7 +86,6 @@
 &lt 3 SPACE  &lt 4 TAB                                                                                      &lt 2 ENTER             &lt 1 BACKSPACE
             >;
         };
-
 
         num_layer {
             bindings = <
@@ -16,7 +96,6 @@
             >;
         };
 
-
         sym_layer {
             bindings = <
 &kp LEFT_BRACE         &kp AMPERSAND    &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_BRACE    &none  &none      &none      &none      &none
@@ -25,7 +104,6 @@
 &kp RIGHT_PARENTHESIS  &kp UNDERSCORE                                                                                       &kp ENTER  &kp BSPC
             >;
         };
-
 
         nav_layer {
             bindings = <
@@ -36,7 +114,6 @@
             >;
         };
 
-
         mouse_layer {
             bindings = <
 &none     &none         &none       &none      &none    &kp K_REDO        &kp K_PASTE       &kp K_COPY      &kp K_CUT          &kp K_UNDO
@@ -45,7 +122,6 @@
 &trans    &trans                                                                                            &mkp MB2           &mkp MB1
             >;
         };
-
 
         fn_layer {
             bindings = <
@@ -56,7 +132,6 @@
             >;
         };
 
-
         sys_layer {
             bindings = <
 &bootloader   &none         &none         &none         &none           &none         &none         &none         &none         &bootloader
@@ -65,7 +140,6 @@
 &trans        &trans                                                                                              &trans        &trans
             >;
         };
-
 
         media_layer {
             bindings = <
