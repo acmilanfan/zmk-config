@@ -21,6 +21,10 @@
 
 &lt { quick-tap-ms = <175>; };
 
+&mmv { time-to-max-speed-ms = <1500>; };
+
+&mwh { time-to-max-speed-ms = <5000>; };
+
 / {
     combos {
         compatible = "zmk,combos";
