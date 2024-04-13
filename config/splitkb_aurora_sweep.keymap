@@ -19,7 +19,7 @@
     quick-tap-ms = <175>;
 };
 
-&lt { quick-tap-ms = <175>; };
+&lt { quick-tap-ms = <300>; };
 
 &mmv { time-to-max-speed-ms = <1500>; };
 
