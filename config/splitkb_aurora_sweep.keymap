@@ -23,7 +23,7 @@
 
 &mmv { time-to-max-speed-ms = <1500>; };
 
-&mwh { time-to-max-speed-ms = <5000>; };
+&msc { time-to-max-speed-ms = <5000>; };
 
 / {
     combos {
