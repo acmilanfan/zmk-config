@@ -19,10 +19,10 @@
     // tapping-term-ms = <200>;
 
     flavor = "tap-preferred";
-    quick-tap-ms = <195>;
+    quick-tap-ms = <200>;
 };
 
-&lt { quick-tap-ms = <195>; };
+&lt { quick-tap-ms = <200>; };
 
 &mmv {
     acceleration-exponent = <1>;      // 1
