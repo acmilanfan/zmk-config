@@ -23,7 +23,6 @@
 };
 
 &lt { quick-tap-ms = <200>; };
-
 &mmv {
     acceleration-exponent = <1>;      // 1
     time-to-max-speed-ms = <500>;    // 40
@@ -38,24 +37,42 @@
 
 / {
     macros {
-        // Cross-platform copy macro
-        cp_copy: cp_copy {
+        // Linux/Windows shortcuts (Ctrl-based)
+        linux_copy: linux_copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp C>, <&macro_release &kp LCTRL>;
         };
 
+        linux_paste: linux_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp V>, <&macro_release &kp LCTRL>;
+        };
+
+        linux_cut: linux_cut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp X>, <&macro_release &kp LCTRL>;
+        };
+
+        linux_undo: linux_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Z>, <&macro_release &kp LCTRL>;
+        };
+
+        linux_redo: linux_redo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Y>, <&macro_release &kp LCTRL>;
+        };
+
+        // macOS shortcuts (Cmd-based)
         mac_copy: mac_copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp LGUI>, <&macro_tap &kp C>, <&macro_release &kp LGUI>;
-        };
-
-        // Cross-platform paste macro
-        cp_paste: cp_paste {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp V>, <&macro_release &kp LCTRL>;
         };
 
         mac_paste: mac_paste {
@@ -64,24 +81,10 @@
             bindings = <&macro_press &kp LGUI>, <&macro_tap &kp V>, <&macro_release &kp LGUI>;
         };
 
-        // Cross-platform cut macro
-        cp_cut: cp_cut {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp X>, <&macro_release &kp LCTRL>;
-        };
-
         mac_cut: mac_cut {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp LGUI>, <&macro_tap &kp X>, <&macro_release &kp LGUI>;
-        };
-
-        // Cross-platform undo macro
-        cp_undo: cp_undo {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Z>, <&macro_release &kp LCTRL>;
         };
 
         mac_undo: mac_undo {
@@ -90,55 +93,10 @@
             bindings = <&macro_press &kp LGUI>, <&macro_tap &kp Z>, <&macro_release &kp LGUI>;
         };
 
-        // Cross-platform redo macro
-        cp_redo: cp_redo {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Y>, <&macro_release &kp LCTRL>;
-        };
-
         mac_redo: mac_redo {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp LGUI>, <&macro_press &kp LSHIFT>, <&macro_tap &kp Z>, <&macro_release &kp LSHIFT>, <&macro_release &kp LGUI>;
-        };
-    };
-
-    behaviors {
-        // Mod-tap behaviors for OS switching
-        os_copy: os_copy {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&cp_copy>, <&mac_copy>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-        };
-
-        os_paste: os_paste {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&cp_paste>, <&mac_paste>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-        };
-
-        os_cut: os_cut {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&cp_cut>, <&mac_cut>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-        };
-
-        os_undo: os_undo {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&cp_undo>, <&mac_undo>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-        };
-
-        os_redo: os_redo {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&cp_redo>, <&mac_redo>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
         };
     };
 
@@ -170,19 +128,19 @@
         };
 
         copy {
-            bindings = <&os_copy>;
+            bindings = <&linux_copy>;
             key-positions = <21 22>;
             timeout-ms = <15>;
         };
 
         paste {
-            bindings = <&os_paste>;
+            bindings = <&linux_paste>;
             key-positions = <22 23>;
             timeout-ms = <15>;
         };
 
         cut {
-            bindings = <&os_cut>;
+            bindings = <&linux_cut>;
             key-positions = <20 21>;
             timeout-ms = <15>;
         };
@@ -196,6 +154,13 @@
         caps {
             bindings = <&kp CAPSLOCK>;
             key-positions = <12 17>;
+        };
+
+        // Toggle between Linux and macOS shortcuts
+        os_toggle {
+            bindings = <&tog 8>;
+            key-positions = <0 9>;
+            timeout-ms = <50>;
         };
     };
 
@@ -231,16 +196,16 @@
 
         nav_layer {
             bindings = <
-&none     &none         &none       &none      &none    &os_redo    &os_paste      &os_copy      &os_cut    &os_undo
-&kt LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
-&none     &none         &none       &none      &none    &kp INSERT  &kp PAGE_DOWN  &kp PAGE_UP   &kp HOME   &kp END
-&trans    &trans                                                                                 &kp ENTER  &kp BACKSPACE
+&none     &none         &none       &none      &none    &linux_redo    &linux_paste      &linux_copy      &linux_cut    &linux_undo
+&kt LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &kp LEFT       &kp DOWN          &kp UP_ARROW     &kp RIGHT     &kp DELETE
+&none     &none         &none       &none      &none    &kp INSERT     &kp PAGE_DOWN     &kp PAGE_UP      &kp HOME      &kp END
+&trans    &trans                                                                                          &kp ENTER     &kp BACKSPACE
             >;
         };
 
         mouse_layer {
             bindings = <
-&none     &none         &none       &none      &none    &os_redo        &os_paste       &os_copy      &os_cut          &os_undo
+&none     &none         &none       &none      &none    &linux_redo     &linux_paste    &linux_copy   &linux_cut       &linux_undo
 &kp LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
 &trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
