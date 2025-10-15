@@ -37,6 +37,111 @@
 };
 
 / {
+    macros {
+        // Cross-platform copy macro
+        cp_copy: cp_copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp C>, <&macro_release &kp LCTRL>;
+        };
+
+        mac_copy: mac_copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp C>, <&macro_release &kp LGUI>;
+        };
+
+        // Cross-platform paste macro
+        cp_paste: cp_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp V>, <&macro_release &kp LCTRL>;
+        };
+
+        mac_paste: mac_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp V>, <&macro_release &kp LGUI>;
+        };
+
+        // Cross-platform cut macro
+        cp_cut: cp_cut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp X>, <&macro_release &kp LCTRL>;
+        };
+
+        mac_cut: mac_cut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp X>, <&macro_release &kp LGUI>;
+        };
+
+        // Cross-platform undo macro
+        cp_undo: cp_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Z>, <&macro_release &kp LCTRL>;
+        };
+
+        mac_undo: mac_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp Z>, <&macro_release &kp LGUI>;
+        };
+
+        // Cross-platform redo macro
+        cp_redo: cp_redo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp Y>, <&macro_release &kp LCTRL>;
+        };
+
+        mac_redo: mac_redo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>, <&macro_press &kp LSHIFT>, <&macro_tap &kp Z>, <&macro_release &kp LSHIFT>, <&macro_release &kp LGUI>;
+        };
+    };
+
+    behaviors {
+        // Mod-tap behaviors for OS switching
+        os_copy: os_copy {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&cp_copy>, <&mac_copy>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        os_paste: os_paste {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&cp_paste>, <&mac_paste>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        os_cut: os_cut {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&cp_cut>, <&mac_cut>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        os_undo: os_undo {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&cp_undo>, <&mac_undo>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        os_redo: os_redo {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&cp_redo>, <&mac_redo>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -65,19 +170,19 @@
         };
 
         copy {
-            bindings = <&kp K_COPY>;
+            bindings = <&os_copy>;
             key-positions = <21 22>;
             timeout-ms = <15>;
         };
 
         paste {
-            bindings = <&kp K_PASTE>;
+            bindings = <&os_paste>;
             key-positions = <22 23>;
             timeout-ms = <15>;
         };
 
         cut {
-            bindings = <&kp K_CUT>;
+            bindings = <&os_cut>;
             key-positions = <20 21>;
             timeout-ms = <15>;
         };
@@ -126,7 +231,7 @@
 
         nav_layer {
             bindings = <
-&none     &none         &none       &none      &none    &kp K_REDO  &kp K_PASTE    &kp K_COPY    &kp K_CUT  &kp K_UNDO
+&none     &none         &none       &none      &none    &os_redo    &os_paste      &os_copy      &os_cut    &os_undo
 &kt LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &kp INSERT  &kp PAGE_DOWN  &kp PAGE_UP   &kp HOME   &kp END
 &trans    &trans                                                                                 &kp ENTER  &kp BACKSPACE
@@ -135,7 +240,7 @@
 
         mouse_layer {
             bindings = <
-&none     &none         &none       &none      &none    &kp K_REDO      &kp K_PASTE     &kp K_COPY    &kp K_CUT        &kp K_UNDO
+&none     &none         &none       &none      &none    &os_redo        &os_paste       &os_copy      &os_cut          &os_undo
 &kp LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
 &trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
