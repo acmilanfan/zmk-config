@@ -18,9 +18,9 @@
 #
 ---
 include:
-  - board: nice_nano@2.0.0/zmk
+  - board: nice_nano@2.0.0/nrf52840/zmk
     shield: splitkb_aurora_sweep_left
-  - board: nice_nano@2.0.0/zmk
+  - board: nice_nano@2.0.0/nrf52840/zmk
     shield: splitkb_aurora_sweep_right
-  - board: nice_nano@2.0.0/zmk
+  - board: nice_nano@2.0.0/nrf52840/zmk
     shield: settings_reset
