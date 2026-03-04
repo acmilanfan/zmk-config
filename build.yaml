@@ -18,9 +18,9 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: nice_nano@v2
     shield: splitkb_aurora_sweep_left
-  - board: nice_nano_v2
+  - board: nice_nano@v2
     shield: splitkb_aurora_sweep_right
-  - board: nice_nano_v2
+  - board: nice_nano@v2
     shield: settings_reset
