@@ -11,16 +11,16 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define DEF_M 0
-#define NUM   1
-#define SYM   2
-#define NAV_M 3
-#define MOU_M 4
-#define FNC   5
-#define SYS   6
-#define MED   7
-#define DEF_L 8
-#define NAV_L 9
-#define MOU_L 10
+#define DEF_L 1
+#define NUM   2
+#define SYM   3
+#define NAV_M 4
+#define NAV_L 5
+#define MOU_M 6
+#define MOU_L 7
+#define FNC   8
+#define SYS   9
+#define MED   10
 
 &mt {
     flavor = "tap-preferred";
@@ -161,6 +161,15 @@
             >;
         };
 
+        default_linux_layer {
+            bindings = <
+&kp Q        &kp W           &kp E         &kp R        &kp T      &kp Y    &kp U             &kp I         &kp O                   &mt MINUS P
+&mt LCTRL A   &mt LEFT_ALT S  &mt LSHIFT D  &mt LGUI F  &lt SYS G  &lt SYS H  &mt LGUI J       &mt LSHIFT K  &mt LEFT_ALT L          &mt RCTRL SEMICOLON
+&kp Z        &kp X           &kp C         &kp V        &lt MED B  &lt FNC N  &mt UNDERSCORE M  &kp COMMA     &mt EXCLAMATION PERIOD  &mt COLON SLASH
+&lt NAV_L SPACE  &lt MOU_L TAB                                                                              &lt SYM ENTER             &lt NUM BACKSPACE
+            >;
+        };
+
         num_layer {
             bindings = <
 &mt LEFT_BRACE LEFT_BRACKET     &mt AMPERSAND N7          &mt ASTERISK N8       &mt LEFT_PARENTHESIS N9  &mt RIGHT_BRACE RIGHT_BRACKET    &none  &none      &none       &none         &none
@@ -188,10 +197,28 @@
             >;
         };
 
+        nav_linux_layer {
+            bindings = <
+&none     &none         &none       &none      &none    &kp K_REDO  &kp K_PASTE    &kp K_COPY    &kp K_CUT  &kp K_UNDO
+&kt LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
+&none     &none         &none       &none      &none    &kp INSERT  &kp PAGE_DOWN  &kp PAGE_UP   &kp HOME   &kp END
+&trans    &trans                                                                                    &kp ENTER  &kp BACKSPACE
+            >;
+        };
+
         mouse_mac_layer {
             bindings = <
 &none     &none         &none       &none      &none    &kp LG(LS(Z))   &kp LG(V)       &kp LG(C)     &kp LG(X)        &kp LG(Z)
 &kp LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
+&none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
+&trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
+            >;
+        };
+
+        mouse_linux_layer {
+            bindings = <
+&none     &none         &none       &none      &none    &kp K_REDO      &kp K_PASTE     &kp K_COPY    &kp K_CUT        &kp K_UNDO
+&kp LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
 &trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
             >;
@@ -221,33 +248,6 @@
 &none       &none       &none  &none  &none    &kp C_PREV  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP       &kp C_NEXT  &kp K_MUTE
 &none       &none       &none  &none  &none    &none       &none                 &none                 &none       &none
 &kp ESCAPE  &kp ESCAPE                                                                                 &none       &kp C_PLAY_PAUSE
-            >;
-        };
-
-        default_linux_layer {
-            bindings = <
-&kp Q        &kp W           &kp E         &kp R        &kp T      &kp Y    &kp U             &kp I         &kp O                   &mt MINUS P
-&mt LCTRL A   &mt LEFT_ALT S  &mt LSHIFT D  &mt LGUI F  &lt SYS G  &lt SYS H  &mt LGUI J       &mt LSHIFT K  &mt LEFT_ALT L          &mt RCTRL SEMICOLON
-&kp Z        &kp X           &kp C         &kp V        &lt MED B  &lt FNC N  &mt UNDERSCORE M  &kp COMMA     &mt EXCLAMATION PERIOD  &mt COLON SLASH
-&lt NAV_L SPACE  &lt MOU_L TAB                                                                              &lt SYM ENTER             &lt NUM BACKSPACE
-            >;
-        };
-
-        nav_linux_layer {
-            bindings = <
-&none     &none         &none       &none      &none    &kp K_REDO  &kp K_PASTE    &kp K_COPY    &kp K_CUT  &kp K_UNDO
-&kt LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
-&none     &none         &none       &none      &none    &kp INSERT  &kp PAGE_DOWN  &kp PAGE_UP   &kp HOME   &kp END
-&trans    &trans                                                                                    &kp ENTER  &kp BACKSPACE
-            >;
-        };
-
-        mouse_linux_layer {
-            bindings = <
-&none     &none         &none       &none      &none    &kp K_REDO      &kp K_PASTE     &kp K_COPY    &kp K_CUT        &kp K_UNDO
-&kp LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
-&none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
-&trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
             >;
         };
     };
