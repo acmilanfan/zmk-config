@@ -164,7 +164,7 @@
         default_linux_layer {
             bindings = <
 &kp Q        &kp W           &kp E         &kp R        &kp T      &kp Y    &kp U             &kp I         &kp O                   &mt MINUS P
-&mt LCTRL A   &mt LEFT_ALT S  &mt LSHIFT D  &mt LGUI F  &lt SYS G  &lt SYS H  &mt LGUI J       &mt LSHIFT K  &mt LEFT_ALT L          &mt RCTRL SEMICOLON
+&mt LGUI A   &mt LEFT_ALT S  &mt LSHIFT D  &mt LCTRL F  &lt SYS G  &lt SYS H  &mt RCTRL J       &mt LSHIFT K  &mt LEFT_ALT L          &mt RGUI SEMICOLON
 &kp Z        &kp X           &kp C         &kp V        &lt MED B  &lt FNC N  &mt UNDERSCORE M  &kp COMMA     &mt EXCLAMATION PERIOD  &mt COLON SLASH
 &lt NAV_L SPACE  &lt MOU_L TAB                                                                              &lt SYM ENTER             &lt NUM BACKSPACE
             >;
@@ -173,7 +173,7 @@
         num_layer {
             bindings = <
 &mt LEFT_BRACE LEFT_BRACKET     &mt AMPERSAND N7          &mt ASTERISK N8       &mt LEFT_PARENTHESIS N9  &mt RIGHT_BRACE RIGHT_BRACKET    &none  &none      &none       &none         &none
-&mt DOUBLE_QUOTES SINGLE_QUOTE  &mt DOLLAR NUMBER_4       &mt PERCENT N5        &mt CARET NUMBER_6       &mt PLUS EQUAL                   &none  &kp LCTRL  &kp LSHIFT  &kp LEFT_ALT  &kp RIGHT_GUI
+&mt DOUBLE_QUOTES SINGLE_QUOTE  &mt DOLLAR NUMBER_4       &mt PERCENT N5        &mt CARET NUMBER_6       &mt PLUS EQUAL                   &none  &kp LCTRL  &kp LSHIFT  &kp LEFT_ALT  &kp RGUI
 &mt TILDE GRAVE                 &mt EXCLAMATION NUMBER_1  &mt AT_SIGN NUMBER_2  &mt HASH NUMBER_3        &mt PIPE BACKSLASH               &none  &none      &none       &none         &none
 &mt RIGHT_PARENTHESIS N0        &mt UNDERSCORE MINUS                                                                                                                    &trans        &trans
             >;
@@ -200,7 +200,7 @@
         nav_linux_layer {
             bindings = <
 &none     &none         &none       &none      &none    &kp K_REDO  &kp K_PASTE    &kp K_COPY    &kp K_CUT  &kp K_UNDO
-&kt LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
+&kt LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &kp INSERT  &kp PAGE_DOWN  &kp PAGE_UP   &kp HOME   &kp END
 &trans    &trans                                                                                    &kp ENTER  &kp BACKSPACE
             >;
@@ -218,7 +218,7 @@
         mouse_linux_layer {
             bindings = <
 &none     &none         &none       &none      &none    &kp K_REDO      &kp K_PASTE     &kp K_COPY    &kp K_CUT        &kp K_UNDO
-&kp LCTRL  &kp LEFT_ALT  &kp LSHIFT  &kp LGUI  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
+&kp LGUI  &kp LEFT_ALT  &kp LSHIFT  &kp LCTRL  &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp DELETE
 &none     &none         &none       &none      &none    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &mkp MCLK
 &trans    &trans                                                                                      &mkp LCLK        &mkp RCLK
             >;
